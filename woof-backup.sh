@@ -3,46 +3,40 @@
 # often, and I change the things I backup often. Wuff!
 
 # Private key
-pmail="contact@waffelo.net"
+priv_key="contact@waffelo.net"
 
-# Place where the files are copied to
-destination="/home/waffelo/woof"
+# Places where files will be copied to
+destination_a="$BACKUP" #Main
+destination_b="$BACKUP/.local"
 
-# Directories to copy
-dir1="$HOME/.local/usr"
-dir2="$HOME/.texmf"
-dir3="$HOME/.config"
-dir4="$HOME/.gpg"
-dir5="$HOME/.minetest"
-dir6="$HOME/.local/share/gajim"
-dir7="$HOME/.password-store"
 
 # Files to copy
-fil1="/etc/hosts"
-fil2="$HOME/.bashrc"
+files_a=( "$HOME/.config" "$HOME/.minetest" "$HOME/.gnupg" "$HOME/.password-store" "$HOME/.ssh" "$HOME/.bashrc")
+files_b=("$HOME/.local/usr" "$HOME/.local/bin")
 
 
-# Script variables ##############################################
+# Colors
 magentabold="\e[1;35m"
 redbold="\e[1;31m"
 canc="\e[0m"
 
 
+printf "$magentabold
+###################################
+#          Woof ThinkPad          #
+#          backup script          #
+###################################$canc
 
-echo ""
-echo -e "$magentabold########################################"
-echo "#            Woof Thinkpad             #"
-echo "#            backup script             #"
-echo "########################################"
-echo -e "$canc"
-echo "This script creates a backup of the Woofie Thinkpad"
-echo "Please make sure you have set the correct directory"
-echo "variables in the script."
-echo -e "$redbold "
-echo -e "DO NOT FORGET TO: $canc"
-echo " * Backup bookmarks"
-echo " * Publish unpublished commits"
-echo " * Check if everything is backed up"
+This script creates a backup of my woof ThinkPad.
+Please make sure you have set the correct directory 
+variables in the script.
+$redbold
+Do not forget to:$canc
+  * Backup bookmarks 
+  * Publish commits that aren't pushed
+  * Check if everything is backed up
+
+"
 
 while true; do
   echo -e "\e[1m"
@@ -58,34 +52,33 @@ while true; do
   esac
 done
 
-# Script actually doing crap #################################
+echo "--------------------------------------"
 
-echo ""
-echo "----------------------------------------"
-echo ""
-sleep 0.5
+function bkp_pkey {
+  printf "\n$magentabold 
+Exporting private key!
+-----------------------------------------------$canc\n"
 
-if [ -d "$destination" ]; then 
-    
-    # Backing up private key
-    gpg -o $destination/private-key.gpg --export-options backup --export-secret-keys $pmail
-
-    # Copying files
-    cp -rvp $dir1 $dir2 $dir3 $dir4 $dir5 $dir6 $dir7 $dir8 $dir9 $dir10 $destination
-    cp -vp $fil1 $fil2 $fil3 $fil4 $fil5 $destination
-
-    echo -e "$magentabold"
-    echo -e "The script has finished! $canc"
-    echo " "
-
-  else
-    echo -e "$redbold"
-    echo -e "Destination directory does not exist!$canc"
-    echo " "
+  gpg -o $destination/private-key.gpg --export-options backup --export-secret-keys $pmail
   
-    
 
-fi
+}
+
+function copy_files {
+  printf "\n$magentabold 
+Copying files!
+-----------------------------------------------$canc\n"
+  
+  mkdir -p $HOME/.local/
+
+  echo -e "\n$magentabold# A -------$canc"
+  cp -rvp ${files_a[*]} $destination_a
+  echo -e "\n$magentabold# B -------$canc"
+  cp -rvp ${files_b[*]} $destination_b
+
+}
 
 
 
+# Executing functions
+copy_files
