@@ -72,7 +72,7 @@ if [ -d "$destination" ]; then
 
     # Copying files
     cp -rvp $dir1 $dir2 $dir3 $dir4 $dir5 $dir6 $dir7 $dir8 $dir9 $dir10 $destination
-    cp -v $fil1 $fil2 $fil3 $fil4 $fil5 $destination
+    cp -vp $fil1 $fil2 $fil3 $fil4 $fil5 $destination
 
     echo -e "$magentabold"
     echo -e "The script has finished! $canc"
