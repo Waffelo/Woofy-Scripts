@@ -8,12 +8,12 @@ priv_key="contact@waffelo.net"
 # Places where files will be copied to
 destination_a="$BACKUP" #Main
 destination_b="$BACKUP/.local"
-
+destination_c="$BACKUP/.local/share"
 
 # Files to copy
-files_a=( "$HOME/.config" "$HOME/.minetest" "$HOME/.gnupg" "$HOME/.password-store" "$HOME/.ssh" "$HOME/.bashrc")
+files_a=( "$HOME/.config" "$HOME/.minetest" "$HOME/.gnupg" "$HOME/.password-store" "$HOME/.ssh" "$HOME/.texmf" "$HOME/.bashrc")
 files_b=("$HOME/.local/usr" "$HOME/.local/bin")
-
+filec_c=("$HOME/.local/share/fonts" "$HOME/.local/share/gajim")
 
 # Colors
 magentabold="\e[1;35m"
@@ -69,16 +69,21 @@ function copy_files {
 Copying files!
 -----------------------------------------------$canc\n"
   
-  mkdir -p $HOME/.local/
+  mkdir -p $HOME/.local/ $HOME/.local/share
 
   echo -e "\n$magentabold# A -------$canc"
   cp -rvp ${files_a[*]} $destination_a
   echo -e "\n$magentabold# B -------$canc"
   cp -rvp ${files_b[*]} $destination_b
+  echo -e "\n$magentabold# C -------$canc"
+  cp -rvp ${files_c[*]} $destination_c
 
 }
 
 
 
 # Executing functions
+bkp_pkey
 copy_files
+
+echo -e "/n$magentabold# The script has finished."
