@@ -10,14 +10,12 @@ canc="\e[0m"
 
 backup="$HOME/meow" #!!! Make sure NOT to add "/" to the end!!!
 
-packages_tool=("xorg" "xorg-init" "sx" "htop" "trash-cli" "exa" "ranger" "zathura" "pass" "gnupg" "neovim" "gajim" "librewolf-bin" "libreoffice" "gimp" "inkscape" "sxiv" "feh" "mpv" "keepassxc")
-
-
+packages_tool=("xorg" "xorg-init" "sx" "htop" "mpd" "mpc" "trash-cli" "exa" "ranger" "zathura" "pass" "gnupg" "neovim" "gajim" "librewolf-bin" "libreoffice" "gimp" "inkscape" "sxiv" "feh" "mpv" "keepassxc" "ncmpcpp" "pulsemixer" "maim")
 
 
 printf "$magentabold
 #############################
-#           Woof            #
+#         Waffelo's         #
 #     Post-Installation     #
 #          script           #
 #############################$canc
@@ -88,16 +86,19 @@ function install_suckless {
 Moving files!
 -----------------------------------------------$canc\n"
   echo -e "\n$magentabold# DWM ------$canc"
-  cd $HOME/.config/dwm/
+  cd $HOME/.local/src/dwm/
   sudo make clean install
   echo -e "\n$magentabold# DWMBlocks ------$canc"
-  cd $HOME/.config/dwmblocks/
+  cd $HOME/.local/src/dwmblocks/
   sudo make clean install
-  echo -e "\n$magentabold# ST ------$canc"
-  cd $HOME/.config/st/
+  echo -e "\n$magentabold# Slock ------$canc"
+  cd $HOME/.local/src/slock/
+  sudo make clean install
+  echo -e "\n$magentabold# St ------$canc"
+  cd $HOME/.local/src/st/
   sudo make clean install
   echo -e "\n$magentabold# DMenu ------$canc"
-  cd $HOME/.config/dmenu/
+  cd $HOME/.local/src/dmenu/
   sudo make clean install
   cd
 }
@@ -105,6 +106,11 @@ Moving files!
 function install_vimplug {
   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+}
+
+function fix_java_apps {
+  wname LG3D
+
 }
 
 # Executing functions
