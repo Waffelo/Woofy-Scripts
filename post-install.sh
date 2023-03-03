@@ -7,7 +7,7 @@ magentabold="\e[1;35m"
 redbold="\e[1;31m"
 canc="\e[0m"
 
-
+user="waffelo"
 backup="$HOME/meow" #!!! Make sure NOT to add "/" to the end!!!
 
 packages_tool=("xorg" "xorg-init" "sx" "htop" "mpd" "mpc" "trash-cli" "exa" "ranger" "zathura" "pass" "gnupg" "neovim" "gajim" "librewolf-bin" "libreoffice" "gimp" "inkscape" "sxiv" "feh" "mpv" "keepassxc" "ncmpcpp" "pulsemixer" "maim")
@@ -29,6 +29,8 @@ This script will:$canc
   * Move backed up files to proper directories
   * Build Suckless software
   * Install vim-plug
+  * Fix Java applications in wmc
+  * Add user to uucp group
 $redbold
 Make sure you:$canc
   * Have selected the correct directory
@@ -113,9 +115,16 @@ function fix_java_apps {
 
 }
 
+function usb_privs {
+  sudo useradd -G uucp $user
+}
+
+
 # Executing functions
 install_yay
 install_packages
 copy_files
 install_suckless
 install_vimplug
+fix_java_apps
+usb_privs
