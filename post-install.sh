@@ -10,7 +10,7 @@ canc="\e[0m"
 user="waffelo"
 backup="$HOME/meow" #!!! Make sure NOT to add "/" to the end!!!
 
-packages_tool=("xorg" "xorg-init" "sx" "htop" "mpd" "mpc" "trash-cli" "exa" "ranger" "zathura" "pass" "gnupg" "neovim" "gajim" "librewolf-bin" "libreoffice" "gimp" "inkscape" "sxiv" "feh" "mpv" "keepassxc" "ncmpcpp" "pulsemixer" "maim")
+packages_tool=("xorg" "xorg-init" "sx" "htop" "mpd" "mpc" "trash-cli" "tlp" "exa" "ranger" "zathura" "pass" "gnupg" "neovim" "gajim" "librewolf-bin" "libreoffice" "gimp" "inkscape" "sxiv" "feh" "mpv" "keepassxc" "ncmpcpp" "cmus" "pulsemixer" "maim" "ffmpeg" "unrar-free" "unzip" "p7zip")
 
 
 printf "$magentabold
