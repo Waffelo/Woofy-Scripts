@@ -35,6 +35,7 @@ Do not forget to:$canc
   * Backup bookmarks 
   * Publish commits that aren't pushed
   * Check if everything is backed up
+  * Backup calendar
 
 "
 
